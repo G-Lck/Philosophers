@@ -36,6 +36,8 @@ int	main(int argc, char* argv[])
 	philos = malloc((sizeof(t_philo) * info.n_of_philo));
 	init_forks(&info);
 	info.print = malloc(sizeof(pthread_mutex_t));
+	info.someone_is_dead = 0;
+	info.start_time = get_time();
 	pthread_mutex_init(info.print, NULL);
 	init_all_philos(&info, philos);
 
