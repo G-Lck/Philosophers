@@ -1,9 +1,5 @@
-begin
-118 2 has taken a fork
-121 2 has taken a fork
-121 2 is eating
-124 5 is eating
-132 2 is sleeping
-133 3 is eating
-133 2 is thinking
-133 2 died 
+1 1 has taken a fork
+2 3 has taken a fork
+2 3 has taken a fork
+2 3 is eating
+101 1 died

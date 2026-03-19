@@ -1,66 +1,76 @@
-# include "philo.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/19 22:26:20 by glucken           #+#    #+#             */
+/*   Updated: 2026/03/19 22:57:36 by glucken          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	is_valid(int argc, char* argv[], t_info	*info)
+#include "philo.h"
+
+static int	is_valid(int argc, char *argv[])
 {
-	int i;
+	int	i;
 
 	if (!(argc == 5 || argc == 6))
 		return (0);
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 	{
 		if (!is_all_digit(argv[i]))
 			return (0);
 		i++;
 	}
-	info->n_of_philo = ft_atoi(argv[1]);
-	info->time_to_die = ft_atoi(argv[2]);
-	info->time_to_eat = ft_atoi(argv[3]);
-	info->time_to_sleep = ft_atoi(argv[4]);
-	info->start_time = get_time();
-	if (argc == 6)
-		info->n_of_eat = ft_atoi(argv[5]);
-	else
-		info->n_of_eat = -1;
 	return (1);
 }
 
-int	main(int argc, char* argv[])
+static void	create_philos(t_info *info, t_philo *philos)
 {
-	int i;
-	t_info info;
-	t_philo *philos;
-
-	if (!is_valid(argc, argv, &info))
-		return(printf("I think you are doing shit\n"), 1);
-
-
-	printf("begin\n");
-	philos = malloc((sizeof(t_philo) * info.n_of_philo));
-	init_forks(&info);
-	info.print = malloc(sizeof(pthread_mutex_t));
-	info.someone_is_dead = 0;
-	info.start_time = get_time();
-	pthread_mutex_init(info.print, NULL);
-	init_all_philos(&info, philos);
+	int	i;
 
 	i = 0;
-	while (i < info.n_of_philo)
+	while (i < info->n_of_philo)
 	{
 		pthread_create(&philos[i].id, NULL, routine, &philos[i]);
 		i++;
 	}
+	pthread_create(&info->monkey, NULL, observation, philos);
+}
 
+static void	wait_philos(t_info *info, t_philo *philos)
+{
+	int	i;
+
+	pthread_join(info->monkey, NULL);
 	i = 0;
-	while (i < info.n_of_philo)
+	while (i < info->n_of_philo)
 	{
 		pthread_join(philos[i].id, NULL);
 		i++;
 	}
-
-	clean(&info, philos);
-	return (0);
-
 }
 
-//number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+int	main(int argc, char *argv[])
+{
+	t_info	info;
+	t_philo	*philos;
+
+	if (!is_valid(argc, argv))
+		return (printf("The programme takes the following"
+				" arguments: number_of_philosophers time_to_die"
+				" time_to_eat time_to_sleep"
+				" [number_of_times_each_philosopher_must_eat]\n"), 1);
+	init_info(argc, argv, &info);
+	philos = malloc(sizeof(t_philo) * info.n_of_philo);
+	if (!philos)
+		return (1);
+	init_all_philos(&info, philos);
+	create_philos(&info, philos);
+	wait_philos(&info, philos);
+	clean(&info, philos);
+	return (0);
+}

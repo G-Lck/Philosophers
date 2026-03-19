@@ -1,0 +1,15 @@
+{
+   ignore_last_meal_read
+   Helgrind:Race
+   fun:observation
+}
+{
+   ignore_last_meal_write
+   Helgrind:Race
+   fun:eat
+}
+{
+   ignore_n_meal_read
+   Helgrind:Race
+   fun:not_all_eat
+}

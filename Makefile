@@ -6,9 +6,11 @@ CFLAGS = -Wall -Wextra -Werror -g -pthread
 SRCS = main.c \
 		init.c \
 		routine.c \
+		routine2.c \
 		utils.c \
 		get_time.c \
 		safe_print.c \
+		observation.c \
 		clean.c
 
 OBJS = ${SRCS:.c=.o}

@@ -1,8 +1,20 @@
-# include "philo.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/19 22:10:42 by glucken           #+#    #+#             */
+/*   Updated: 2026/03/19 22:10:42 by glucken          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_strlen(char *str)
+#include "philo.h"
+
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -12,9 +24,9 @@ int ft_strlen(char *str)
 
 int	ft_atoi(char *str)
 {
-	int result;
+	int	result;
 	int	len;
-	int i;
+	int	i;
 
 	result = 0;
 	len = ft_strlen(str);
@@ -27,12 +39,12 @@ int	ft_atoi(char *str)
 	return (result);
 }
 
-int is_all_digit(char *str)
+int	is_all_digit(char *str)
 {
-	int i;
+	int	i;
 
-	i=0;
-	while(str[i])
+	i = 0;
+	while (str[i])
 	{
 		if (!('0' <= str[i] && str[i] <= '9'))
 			return (0);
