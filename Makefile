@@ -7,7 +7,9 @@ SRCS = main.c \
 		init.c \
 		routine.c \
 		utils.c \
-		get_time.c
+		get_time.c \
+		safe_print.c \
+		clean.c
 
 OBJS = ${SRCS:.c=.o}
 

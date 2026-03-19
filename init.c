@@ -36,7 +36,7 @@ int	init_all_philos(t_info *info, t_philo *philos)
 	i = 0;
 	while(i < info->n_of_philo)
 	{
-		init_philo(&philos[i], info, i + 1);
+		init_philo(&philos[i], info, i);
 		i++;
 	}
 	return (0);

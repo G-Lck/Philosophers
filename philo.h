@@ -32,6 +32,8 @@ typedef struct s_philo
 
 //number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 
+void	safe_print(t_philo *p, char *text);
+
 uint64_t get_time(void);
 int	ft_usleep(useconds_t time);
 
@@ -43,5 +45,7 @@ void	*routine(void *philo);
 
 int		init_forks(t_info *info);
 int		init_all_philos(t_info *info, t_philo *philos);
+
+void	clean(t_info *info, t_philo *philos);
 
 # endif

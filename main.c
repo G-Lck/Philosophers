@@ -17,8 +17,11 @@ int	is_valid(int argc, char* argv[], t_info	*info)
 	info->time_to_die = ft_atoi(argv[2]);
 	info->time_to_eat = ft_atoi(argv[3]);
 	info->time_to_sleep = ft_atoi(argv[4]);
+	info->start_time = get_time();
 	if (argc == 6)
 		info->n_of_eat = ft_atoi(argv[5]);
+	else
+		info->n_of_eat = -1;
 	return (1);
 }
 
@@ -54,6 +57,8 @@ int	main(int argc, char* argv[])
 		pthread_join(philos[i].id, NULL);
 		i++;
 	}
+
+	clean(&info, philos);
 	return (0);
 
 }
