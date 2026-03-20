@@ -21,7 +21,7 @@ static void	eat_even(t_philo *p)
 	safe_print(p, "%lli %i has taken a fork\n");
 	safe_print(p, "%lli %i is eating\n");
 	p->last_meal = get_time();
-	ft_usleep(p->info->time_to_eat);
+	ft_msleep(p->info->time_to_eat);
 	p->n_meal++;
 	pthread_mutex_unlock(p->left_fork);
 	pthread_mutex_unlock(p->right_fork);
@@ -36,7 +36,7 @@ static void	eat_odd(t_philo *p)
 	safe_print(p, "%lli %i has taken a fork\n");
 	safe_print(p, "%lli %i is eating\n");
 	p->last_meal = get_time();
-	ft_usleep(p->info->time_to_eat);
+	ft_msleep(p->info->time_to_eat);
 	p->n_meal++;
 	pthread_mutex_unlock(p->right_fork);
 	pthread_mutex_unlock(p->left_fork);
@@ -48,7 +48,7 @@ void	eat(t_philo *p)
 	{
 		pthread_mutex_lock(p->left_fork);
 		safe_print(p, "%lli %i has taken a fork\n");
-		ft_usleep(p->info->time_to_die + 1);
+		ft_msleep(p->info->time_to_die + 1);
 		pthread_mutex_unlock(p->left_fork);
 		return ;
 	}

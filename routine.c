@@ -27,7 +27,7 @@ static void	sleeping(t_philo *p)
 	if (check_death(p))
 		return ;
 	safe_print(p, "%lli %i is sleeping\n");
-	ft_usleep(p->info->time_to_sleep);
+	ft_msleep(p->info->time_to_sleep);
 }
 
 static void	thinking(t_philo *p)
@@ -36,7 +36,7 @@ static void	thinking(t_philo *p)
 		return ;
 	safe_print(p, "%lli %i is thinking\n");
 	if (p->info->n_of_philo % 2 == 1)
-		ft_usleep(p->info->time_to_eat);
+		ft_msleep(p->info->time_to_eat);
 }
 
 void	*routine(void *philo)
@@ -45,7 +45,7 @@ void	*routine(void *philo)
 
 	p = (t_philo *) philo;
 	if (p->num % 2 == 1)
-		ft_usleep(p->info->time_to_eat / 2);
+		ft_msleep(p->info->time_to_eat / 2);
 	while (1)
 	{
 		if (check_death(p))

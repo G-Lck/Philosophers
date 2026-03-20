@@ -6,7 +6,7 @@
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 22:07:56 by glucken           #+#    #+#             */
-/*   Updated: 2026/03/19 22:41:14 by glucken          ###   ########.fr       */
+/*   Updated: 2026/03/20 09:52:07 by glucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_philo
 void		safe_print(t_philo *p, char *text);
 
 uint64_t	get_time(void);
-int			ft_usleep(useconds_t time);
+int			ft_msleep(useconds_t time);
 
 int			ft_strlen(char *str);
 int			ft_atoi(char *str);

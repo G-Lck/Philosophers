@@ -21,7 +21,7 @@ uint64_t	get_time(void)
 	return (tv.tv_sec * (uint64_t)1000 + tv.tv_usec / (uint64_t)1000);
 }
 
-int	ft_usleep(useconds_t time)
+int	ft_msleep(useconds_t time)
 {
 	uint64_t	start;
 
